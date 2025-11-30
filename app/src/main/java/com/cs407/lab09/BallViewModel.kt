@@ -14,6 +14,9 @@ class BallViewModel : ViewModel() {
     private var ball: Ball? = null
     private var lastTimestamp: Long = 0L
 
+    private val ACC_SCALE = 25f
+
+
     private val _ballPosition = MutableStateFlow(Offset.Zero)
     val ballPosition: StateFlow<Offset> = _ballPosition.asStateFlow()
 
@@ -50,10 +53,14 @@ class BallViewModel : ViewModel() {
                 // Gravity sensor axes: +Y points OUT of the screen
                 // Screen coordinates: +Y points DOWN
                 // → So invert Y
-                val xAcc = event.values[0]
-                val yAcc = -event.values[1]
+                val rawX = event.values[0]
+                val rawY = event.values[1]
 
-                // Update physics
+                val xAcc = -rawX * ACC_SCALE
+                val yAcc = rawY * ACC_SCALE
+
+
+
                 currentBall.updatePositionAndVelocity(
                     xAcc = xAcc,
                     yAcc = yAcc,
