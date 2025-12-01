@@ -55,17 +55,17 @@ fun GameScreen(viewModel: BallViewModel) {
 
     val context = LocalContext.current
 
-    // ✔ Initialize SensorManager
+    // Initialize SensorManager
     val sensorManager = remember {
         context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
     }
 
-    // ✔ Get gravity sensor
+    // Get gravity sensor
     val gravitySensor = remember {
         sensorManager.getDefaultSensor(Sensor.TYPE_GRAVITY)
     }
 
-    // ✔ Sensor listener setup via DisposableEffect
+    // Sensor listener setup via DisposableEffect
     DisposableEffect(sensorManager, gravitySensor) {
 
         val listener = object : SensorEventListener {
@@ -132,7 +132,7 @@ fun GameScreen(viewModel: BallViewModel) {
                 }
         ) {
 
-            // ✔ Draw ball
+            // Draw ball
             Image(
                 painter = painterResource(id = R.drawable.soccer),
                 contentDescription = "Soccer Ball",

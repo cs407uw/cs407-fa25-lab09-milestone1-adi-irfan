@@ -49,10 +49,9 @@ class BallViewModel : ViewModel() {
                 val NS2S = 1.0f / 1_000_000_000.0f
                 val dT = (event.timestamp - lastTimestamp) * NS2S
 
-                // IMPORTANT:
                 // Gravity sensor axes: +Y points OUT of the screen
                 // Screen coordinates: +Y points DOWN
-                // → So invert Y
+                // So invert Y
                 val rawX = event.values[0]
                 val rawY = event.values[1]
 
