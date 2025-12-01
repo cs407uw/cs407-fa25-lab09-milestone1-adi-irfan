@@ -64,36 +64,32 @@ class Ball(
      * If it hits a wall, clamp the position and zero out the velocity.
      */
     fun checkBoundaries() {
-        val radius = ballSize / 2f
 
-        // Left wall
-        if (posX < radius) {
-            posX = radius
+        // LEFT wall
+        if (posX < 0f) {
+            posX = 0f
             velocityX = 0f
-            accX = 0f
         }
 
-        // Right wall
-        if (posX > backgroundWidth - radius) {
-            posX = backgroundWidth - radius
+        // RIGHT wall
+        if (posX + ballSize > backgroundWidth) {
+            posX = backgroundWidth - ballSize
             velocityX = 0f
-            accX = 0f
         }
 
-        // Top wall
-        if (posY < radius) {
-            posY = radius
+        // TOP wall
+        if (posY < 0f) {
+            posY = 0f
             velocityY = 0f
-            accY = 0f
         }
 
-        // Bottom wall
-        if (posY > backgroundHeight - radius) {
-            posY = backgroundHeight - radius
+        // BOTTOM wall
+        if (posY + ballSize > backgroundHeight) {
+            posY = backgroundHeight - ballSize
             velocityY = 0f
-            accY = 0f
         }
     }
+
 
     /**
      * Resets ball to the center of the background with zero velocity & acceleration.
